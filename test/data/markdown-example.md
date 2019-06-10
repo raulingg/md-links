@@ -17,7 +17,7 @@ linebreak](http://test.com)
 
 [](uri:empty-title)
 
-[[valid link #5:extra sq bracket](https://test.com)
+[[valid link #5:extra sq bracket](https://test.com?g=154&fh=!445?)
 
 [extra sq bracket - invalid]](https://test.com)
 
