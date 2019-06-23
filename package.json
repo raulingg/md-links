@@ -1,10 +1,29 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "@raulingg/md-links",
+  "version": "0.3.0",
+  "description": "This library allows you to find links within markdown files",
+  "author": "Raul Quispe <relaxedchild@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/raulingg/md-links#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raulingg/md-links.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raulingg/md-links/issues"
+  },
+  "keywords": [
+    "markdown",
+    "links",
+    "node"
+  ],
+  "main": "./src/index.js",
   "scripts": {
+    "clean": "rm -rf dist",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run clean && npm run test && npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -23,5 +42,8 @@
   },
   "bin": {
     "md-links": "./dist/cli.js"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
