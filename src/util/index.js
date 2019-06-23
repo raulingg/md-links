@@ -37,8 +37,8 @@ export const findMarkdownFiles = path => {
 
 export const validateUrl = url =>
   fetch(url)
-    .then(({ status, ok}) => ({
-      status: ok ? 'OK': 'fail',
+    .then(({ status, ok }) => ({
+      status: ok ? 'OK' : 'fail',
       statusCode: status
     }))
     .catch(() => ({ status: 'fail', statusCode: 500 }))
@@ -69,7 +69,12 @@ export const matchMarkdownLinks = text => {
   const matches = []
 
   while ((m = regex.exec(text)) !== null) {
-    matches.push({ text: m[1], href: m[2] })
+    if (m[2].includes(')](')) {
+      const videoUrls = m[2].split(')](')
+      matches.push({ text: m[1], href: videoUrls[0] }, { text: m[1], href: videoUrls[1] })
+    } else {
+      matches.push({ text: m[1], href: m[2] })
+    }
   }
 
   return matches
@@ -77,7 +82,7 @@ export const matchMarkdownLinks = text => {
 
 export const uniqueBy = (arr, prop) =>
   arr.reduce((acc, item) => {
-    if (!acc.includes(item[prop])) {
+    if (item.hasOwnProperty(prop) && !acc.includes(item[prop])) {
       acc.push(item[prop])
     }
     return acc

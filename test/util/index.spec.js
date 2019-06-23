@@ -114,34 +114,35 @@ describe('Utils::', () => {
 
     it('should return all valid links', () => {
       const text = readFileSync(dataDirPath + '/markdown-example.md')
-
       expect(matchMarkdownLinks(text)).toHaveLength(5)
+    })
+
+    it('should return all valid links including video links', () => {
+      const text = readFileSync(dataDirPath + '/README-WITH-VIDEO-LINKS.md')
+      expect(matchMarkdownLinks(text)).toHaveLength(9)
     })
   })
 
   describe('streamFile::', () => {
-    it('should return only one chunk when file size is less than 4 KB', async done => {
+    it('should return only one chunk when file size is less than 4 KB', async () => {
       let chunksNumber = 0
       const callback = () => chunksNumber++
       await streamFile(dataDirPath + '/markdown-example.md', callback)
       expect(chunksNumber).toBe(1)
-      done()
     })
 
-    it('should return 5 chunks', async done => {
+    it('should return 5 chunks', async () => {
       let chunksNumber = 0
       const callback = () => chunksNumber++
       await streamFile(dataDirPath + '/README.md', callback)
       expect(chunksNumber).toBe(5)
-      done()
     })
 
-    it('should not return any stream when the file is empty', async done => {
+    it('should not return any stream when the file is empty', async () => {
       let chunksNumber = 0
       const callback = () => chunksNumber++
       await streamFile(dataDirPath + '/empty.md', callback)
       expect(chunksNumber).toBe(0)
-      done()
     })
 
     it('should return an exception when the file is not found', async () => {

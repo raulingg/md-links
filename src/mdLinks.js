@@ -7,8 +7,7 @@ import {
   uniqueBy
 } from './util'
 
-const onlyBroken = markdownLinks =>
-  markdownLinks.filter(item => item.status !== 'OK')
+const onlyBroken = markdownLinks => markdownLinks.filter(item => item.status !== 'OK')
 
 const stats = (markdownLinks, validate = false) => {
   const stats = {
@@ -25,18 +24,30 @@ const stats = (markdownLinks, validate = false) => {
 
 const pipe = (path, validate) => text => {
   const links = matchMarkdownLinks(text)
-  const linksWithPath = links.map(link => ({ ...link, path }))
 
-  if (validate) {
-    return linksWithPath.map(link =>
-      validateUrl(link.href).then(response => ({
-        ...link,
-        ...response
-      }))
-    )
-  }
+  return links.map(link => {
+    const linkWithPath = { ...link, path }
 
-  return linksWithPath
+    if (validate) {
+      return validateUrl(linkWithPath.href)
+        .then(statusData => ({
+          ...linkWithPath,
+          ...statusData
+        }))
+        .then(linkWithStatusData => {
+          console.info(
+            `${linkWithStatusData.path}  ${linkWithStatusData.href}  ${
+              linkWithStatusData.status
+            }  ${linkWithStatusData.statusCode}  ${linkWithStatusData.text}`
+          )
+
+          return linkWithStatusData
+        })
+    }
+
+    console.info(`${linkWithPath.path}  ${linkWithPath.href}  ${linkWithPath.text}`)
+    return linkWithPath
+  })
 }
 
 export default async (path, options = { validate: false, stats: false }) => {
