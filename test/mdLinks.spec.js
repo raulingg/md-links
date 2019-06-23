@@ -5,6 +5,7 @@ describe('mdLinks::', () => {
   fetchMock
     .mock('begin:https://markdown-with-broken-links.com/', 404)
     .mock('*', 200)
+  console.info = jest.fn()
 
   describe('data::', () => {
     it('should return a exception when path  does not exist', async () =>
