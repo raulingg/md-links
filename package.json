@@ -31,11 +31,12 @@
     "@babel/preset-env": "^7.4.5",
     "coveralls": "^3.0.4",
     "fetch-mock": "^7.3.3",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "np": "^5.0.3"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0",
-    "yargs": "^13.2.4"
+    "minimist": "^1.2.0",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": ">=8"
