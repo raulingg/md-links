@@ -1,4 +1,5 @@
 language: node_js
+
 node_js:
   - '8'
 script: echo "Running tests against $(node -v)..."
@@ -7,4 +8,6 @@ jobs:
     - stage: Produce Coverage
       node_js: '8'
       script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
-
+branches:
+  only:
+    - master
