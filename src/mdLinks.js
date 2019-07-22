@@ -78,7 +78,7 @@ const pipe = (path, validate) => text => {
  *  const stats = mdlink.stats()
  * })
  */
-export default (path, options = { validate: false }) => {
+module.exports = (path, options = { validate: false }) => {
   try {
     const absolutePath = absPath(path)
     const markdownPaths = findMarkdownFiles(absolutePath)
