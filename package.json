@@ -17,7 +17,7 @@
     "links",
     "node"
   ],
-  "main": "./src/index.js",
+  "main": "./dist/mdLinks.js",
   "scripts": {
     "clean": "rm -rf dist",
     "test": "jest",
