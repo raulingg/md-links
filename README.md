@@ -1,25 +1,40 @@
-# Markdown Links
-
-> This repository is an implementation of this [proposal](https://github.com/Laboratoria/LIM008-fe-md-links)
+# 🔗  Markdown Links
 
 [![Node.js CI](https://github.com/raulingg/md-links/actions/workflows/node.js.yml/badge.svg)](https://github.com/raulingg/md-links/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/raulingg/md-links/badge.svg?branch=master)](https://coveralls.io/github/raulingg/md-links?branch=master)
 
-Find all links included in a markdown file or in all markdown files inside a folder.
+> an implementation of [Md Links project](https://github.com/Laboratoria/LIM008-fe-md-links)
 
-## Installation
+## Features
 
-to install globally
+- Finds links in a markdown file (.md | .markdown)
+- Finds links in a folder recursively.
+- Validate links by making a HTTP GET request and checking the response's status code.
+- Runs from CLI
 
-`npm install -g @raulingg/md-links`
+---
 
-to install as a dependency in your project
+## Installing
 
-`npm install @raulingg/md-links`
+- globally
 
-## Usage
+  ```sh
+  npm install -g @raulingg/md-links`
+  ```
 
-- Requiring dependency
+- locally, as dependency in your project
+
+  ```sh
+  npm install @raulingg/md-links
+  ```
+
+---
+
+## Using
+
+### In a project
+
+#### Requiring commonjs module
 
   ```js
   const mdLinks = require('@raulingg/md-links')
@@ -38,7 +53,7 @@ to install as a dependency in your project
   mdLinks('path/to/directory').data().then(data => {});
   ```
 
-- Importing using ES6
+#### Importing ES module
 
   ```js
   import mdLinks from require('@raulingg/md-links')
@@ -49,7 +64,7 @@ to install as a dependency in your project
   // do whatever you want
   ```
 
-- validate broken links
+#### validating broken links
 
   ```js
   mdLinks('path/to/file.md', { validate: true}).then((mdlink) => {
@@ -59,7 +74,7 @@ to install as a dependency in your project
   });
   ```
 
-- Get stats
+#### Getting stats
 
   ```js
   /**
@@ -76,43 +91,44 @@ to install as a dependency in your project
   mdLinks('path/to/file.md', { validate: true}).then(mdlink => mdlink.stats());
   ```
 
+---
+
 ### CLI
 
-- Basic usage
+#### Get links
 
   ```sh
   # single file
   md-links <path/to/file.md>
 
-  # scan all markdown files in directory
-  md-links <path/to/directory>
+  # scan all markdown files in a folder
+  md-links <path/to/dir>
   ```
 
-- Adding a validation option (--validate or -val)
+#### Validate links
 
   ```sh
-  md-links <path/to/directory> --validate
+  md-links <path/to/dir> --validate
   ```
 
-- Get stats about how many links and broken links exist
+#### Get stats
 
   ```sh
-  md-links <path/to/directory> --stats
+  md-links <path/to/dir> --stats
 
   # validate and return stats
-  md-links <path/to/directory> --validate --stats
+  md-links <path/to/dir> --validate --stats
   ```
 
 ## Markdown file
 
 ### Extensions supported
 
-- .md
-- .markdown
+- `.md`, `.markdown`
 
 ### Format supported
 
-- Basic Cases
+#### Basic Cases
 
   ```md
   [valid link](http://test.com)
@@ -122,22 +138,20 @@ to install as a dependency in your project
   linebreak](http://test.com)
   ```
 
-- Extra Cases
+#### Extra Cases
 
   ```md
   [[extra sq bracket](https://test.com?g=154&fh=!445?)
   ```
 
-- Video Case
-
-  Find image and video url
+#### Video Case
 
   ```md
   [![Solution Temperature converter](https://i.ytimg.com/vi/Ix6VLiBcABw/0.jpg)](https://www.youtube.com/watch?v=Ix6VLiBcABw)
 
   ```
 
-- Unsupported Cases
+#### Unsupported Cases
 
   ```md
   [extra sq bracket - invalid]](https://test.com)
