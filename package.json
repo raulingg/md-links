@@ -1,6 +1,6 @@
 {
   "name": "@raulingg/md-links",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "This library allows you to find links within markdown files",
   "author": "Raul Quispe <relaxedchild@gmail.com>",
   "license": "ISC",
