@@ -19,11 +19,10 @@
   ],
   "main": "./dist/mdLinks.js",
   "scripts": {
-    "clean": "rm -rf dist",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "babel src --out-dir dist",
-    "prepublishOnly": "npm run clean && npm run test && npm run build"
+    "build": "rm -rf dist && babel src --out-dir dist",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
