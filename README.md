@@ -2,7 +2,7 @@
 
 > This repository is an implementation of this [proposal](https://github.com/Laboratoria/LIM008-fe-md-links)
 
-[![Build Status](https://travis-ci.org/raulingg/md-links.svg?branch=master)](https://travis-ci.org/raulingg/md-links)
+[![Node.js CI](https://github.com/raulingg/md-links/actions/workflows/node.js.yml/badge.svg)](https://github.com/raulingg/md-links/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/raulingg/md-links/badge.svg?branch=master)](https://coveralls.io/github/raulingg/md-links?branch=master)
 
 Find all links included in a markdown file or in all markdown files inside a folder.
@@ -11,14 +11,11 @@ Find all links included in a markdown file or in all markdown files inside a fol
 
 to install globally
 
-
 `npm install -g @raulingg/md-links`
-
 
 to install as a dependency in your project
 
 `npm install @raulingg/md-links`
-
 
 ## Usage
 
@@ -134,10 +131,12 @@ to install as a dependency in your project
 - Video Case
 
   Find image and video url
+
   ```md
   [![Solution Temperature converter](https://i.ytimg.com/vi/Ix6VLiBcABw/0.jpg)](https://www.youtube.com/watch?v=Ix6VLiBcABw)
 
   ```
+
 - Unsupported Cases
 
   ```md
