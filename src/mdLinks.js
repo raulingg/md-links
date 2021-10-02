@@ -25,18 +25,11 @@ import {
 
 const onlyBroken = markdownLinks => markdownLinks.filter(item => item.status !== 'OK')
 
-const stats = (markdownLinks, validate = false) => {
-  const stats = {
-    total: markdownLinks.length,
-    unique: uniqueBy(markdownLinks, 'href').length
-  }
-
-  if (validate) {
-    stats.broken = onlyBroken(markdownLinks).length
-  }
-
-  return stats
-}
+const stats = (markdownLinks) => ({
+  total: markdownLinks.length,
+  unique: uniqueBy(markdownLinks, 'href').length,
+  ...('status' in markdownLinks[0]) && { broken: onlyBroken(markdownLinks).length }
+})
 
 const pipe = (path, validate) => text => {
   const links = matchMarkdownLinks(text)
@@ -98,7 +91,7 @@ module.exports = (path, options = { validate: false }) => {
       )
       .then(links => ({
         data: () => links,
-        stats: () => stats(links, options.validate)
+        stats: () => stats(links)
       }))
   } catch (err) {
     return Promise.reject(err)

@@ -56,6 +56,11 @@ describe('Utils::', () => {
   })
 
   describe('findMarkdownFiles::', () => {
+
+    it('should return an error when path is missing', () =>
+      expect(() => findMarkdownFiles()).toThrow()
+    )
+
     it('should return an array with all the paths of the markdown files found', () =>
       expect(findMarkdownFiles(dataDirPath + '/first-depth')).toEqual(
         expect.arrayContaining([
