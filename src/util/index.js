@@ -22,17 +22,13 @@ const isMarkdownFile = filePath => filePath.endsWith('.md') || filePath.endsWith
  * @returns array
  */
 export const findMarkdownFiles = path => {
-  try {
-    return fs.statSync(path).isDirectory()
-      ? fs
-          .readdirSync(path)
-          .reduce((ac, item) => ac.concat(findMarkdownFiles(join(path, item))), [])
-      : isMarkdownFile(path)
-      ? [path]
-      : []
-  } catch (err) {
-    throw new Error('path provided not found', err.message || err)
-  }
+  return fs.statSync(path).isDirectory()
+    ? fs
+        .readdirSync(path)
+        .reduce((ac, item) => ac.concat(findMarkdownFiles(join(path, item))), [])
+    : isMarkdownFile(path)
+    ? [path]
+    : []
 }
 
 export const validateUrl = url =>
